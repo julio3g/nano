@@ -9,15 +9,33 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.3.0",
+    "@hookform/resolvers": "^3.9.1",
     "@prisma/client": "^5.22.0",
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.1.2",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-popover": "^1.1.2",
+    "@radix-ui/react-slot": "^1.1.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "1.0.0",
+    "date-fns": "^4.1.0",
+    "dayjs": "^1.11.13",
+    "extenso": "^2.1.0",
+    "ky": "^1.7.3",
     "lucide-react": "^0.462.0",
     "next": "15.0.3",
+    "next-themes": "^0.4.3",
     "react": "19.0.0-rc-66855b96-20241106",
+    "react-day-picker": "8.10.1",
     "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react-hook-form": "^7.53.2",
+    "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.5",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^3.23.8",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
@@ -32,6 +50,10 @@
     "prettier-plugin-tailwindcss": "^0.6.9",
     "prisma": "^5.22.0",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.19.2",
     "typescript": "^5"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
