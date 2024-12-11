@@ -8,20 +8,54 @@ datasource db {
 }
 
 model Employee {
-  id         String   @id @default(uuid())
+  id         String      @id @default(uuid())
   name       String
-  dailyValue Float    @map("daily_value")
-  createdAt  DateTime @default(now()) @map("created_at")
-  updatedAt  DateTime @updatedAt @map("updated_at")
+  dailyValue Float       @map("daily_value")
+  createdAt  DateTime    @default(now()) @map("created_at")
+  updatedAt  DateTime    @updatedAt @map("updated_at")
+  fortnight  Fortnight[]
 
   @@map("employees")
 }
 
 model Payer {
-  id        String   @id @default(uuid())
+  id        String      @id @default(uuid())
   name      String
+  createdAt DateTime    @default(now()) @map("created_at")
+  updatedAt DateTime    @updatedAt @map("updated_at")
+  fortnight Fortnight[]
+
+  @@map("payers")
+}
+
+model Schedule {
+  id          String    @id @default(uuid(7))
+  date        DateTime
+  morning     Boolean   @default(false)
+  afternoon   Boolean   @default(false)
+  overtime    Float     @default(0)
+  location    String
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+  fortnight   Fortnight @relation(fields: [fortnightId], references: [id], onDelete: Cascade)
+  fortnightId String    @map("fortnight_id")
+
+  @@map("schedules")
+}
+
+model Fortnight {
+  id        String   @id @default(uuid(7))
+  startDate DateTime
+  endDate   DateTime
+
+  employee   Employee   @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  employeeId String     @map("employee_id")
+  payer      Payer      @relation(fields: [payerId], references: [id], onDelete: Cascade)
+  payerId    String     @map("payer_id")
+  schedule   Schedule[]
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("payers")
+  @@map("fortnights")
 }
