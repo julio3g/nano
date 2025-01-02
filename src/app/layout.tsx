@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 // eslint-disable-next-line camelcase
 import { Plus_Jakarta_Sans } from 'next/font/google'
 
-import { ThemeProvider } from '@/providers/theme-provider'
+import { Providers } from './providers'
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'] })
 
@@ -18,15 +18,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body className={`${jakarta.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+      <body
+        className={`${jakarta.className} antialiased bg-slate-50 dark:bg-slate-950`}
+      >
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
